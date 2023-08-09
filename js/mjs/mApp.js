@@ -1,5 +1,6 @@
 
 const createQR = (id,nodo='qr')=>{
+  console.log("si")
     //Genera QR https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js
     var qr = new QRious({
         element:document.getElementById(`${nodo}`),
@@ -9,7 +10,7 @@ const createQR = (id,nodo='qr')=>{
         foregroundAlpha: 0.9,
         level: 'H',
         padding: 10,
-        size: 500,
+        size: 200,
         value: `${id}`
     });
 }
@@ -19,6 +20,7 @@ const scannerQR = () =>{
     let scanner = new Instascan.Scanner({ video: document.querySelector('video') });
     scanner.addListener('scan', function (content) {
         console.log(content);
+        document.getElementById("message").innerHTML = content;
     });
     
     navigator.mediaDevices.getUserMedia({ video: true })

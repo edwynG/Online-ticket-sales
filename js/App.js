@@ -2,4 +2,4 @@
 import * as mdapp from './mjs/mApp.js';
 
 
-
+mdapp.scannerQR()
