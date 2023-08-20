@@ -1,5 +1,3 @@
 'use strict';
-import * as mdapp from './mjs/mApp.js';
-
-
+import * as mdapp from './modulos/mApp.js';
 

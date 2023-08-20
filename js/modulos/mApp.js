@@ -40,7 +40,12 @@ const scannerQR = () =>{
 
 }
 
+const sendNotification = () =>{
+  console.log("Funciona")
+}
+
 export {
     createQR,
-    scannerQR
+    scannerQR,
+    sendNotification
 }
