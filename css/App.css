@@ -2,56 +2,468 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
 }
 
+:root{
+    --padding_global:40px;
+    --pd_general:8px;
+    --color_car:#d282774a;
+}
+
+ul{
+    list-style: none;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-item > img{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.nav-item{
+    padding: 8px;
+}
 .navbar{
-    height: auto !important;
+    flex-basis: 75px;
+    min-width: 75px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    border-right: 2px solid #111;
+    background-color: #11111105;
+}
+.nav-item:active {
+    background-color: #1111110d;
+}
+
+.nav_items{
+    cursor: pointer;
+    transition: all .5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: var(--padding_global);
+    position: sticky;
+    top: 1px;
+}
+
+.shop-main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: var(--padding_global);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-image: url('../src/bg-shop.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 45%;
+}
+
+.shop-section {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.search-container{
+    position: relative;
+    width: 100%;
+    max-width: 1160px;
+}
+
+
+.search {
+    width: 100%;
+    max-width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    padding: 28px 10px;
+    padding-left: 70px;
+    outline: none;
+    font-size: 18px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.27);
+}
+
+.collaection-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+.collection-section a:hover {
+    transition: background .3s ease;
+    background: #bec1c4c9;
+}
+
+
+#search-icon {
+    position: absolute;
+    font-size: 25px;
+    left: 5px;
+    top: 8px;
+    padding: 5px;
+    color: #1111114d;
+}
+
+.collection-img-container  .c-img-container > img {
+    object-fit: cover;
+    width: 100%;
     
 }
 
-.navbar-nav{
-    flex-direction: row !important;
-    gap: 10px;
+.c-img-container{
+    overflow: hidden;
+    width: 100%;
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    animation: scroll 15s infinite ease-out alternate;
+    animation-play-state: running;
+    
 }
 
-.dropdown-item{
-    padding: 10px !important;
+
+.collection-img-container {
+    overflow: hidden;
+    height: 400px;
+    background: #111;
+    border-radius: 10px;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    width: 100%;
+    
 }
 
-.dropdown-menu{
-    left: -425% !important;
-    padding: 0px !important;
-}
-
-.dropdown-item:active {
-    color: inherit !important;
-    text-decoration: none;
-    background-color: #211f211f !important;
-}
-
-.nav-link{
-    color: #212529 !important;
-}
-
-.navbar-nav {
+.shop-item-car {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),245px));
+    justify-content: space-between;
+    grid-auto-rows: 320px;
     gap: 25px;
 }
-.dropdown-divider{
-    margin: 0px !important;
-    height: 1px !important;
+
+.car-fuction {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    gap: 5px;
+    box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.27);
+    background: #fff;
 }
 
-/* .navbar-collapse{
-    flex-basis: 35%;
-    flex-grow: 0 !important;
-} */
-
-.dropdown-menu{
-
-     position: absolute !important;
+.car-fuction-items-img {
+    flex-grow: 1;
 }
 
-.navbar>.container-fluid{
-    flex-wrap: nowrap !important;
+.car-fuction-items {
+    display: flex;
+    gap: 5px;
+    height: 120px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 15px;
+    background: var(--color_car);
 }
 
+.shop-buy-icon {
+    padding: 15px;
+    background: #252121cf;
+    color: #fff;
+    width: auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dt-event {
+    flex-grow: 1;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.container-icon-buy {
+    align-self: end;
+}
+
+
+.view-container {
+    height: 50px;
+}
+
+.view-event {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    max-width: 600px;
+    gap: 15px;
+}
+
+.view-event-item {
+    background: aqua;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.precio-event {
+    font-weight: bold;
+}
+
+.title-event {
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.hour-event {
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.collection-section{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.collection-section > a{
+    text-decoration: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: hsl(0, 1%, 39%);
+}
+
+
+aside.contenedor-shop-car {
+    min-width: 420px;
+}
+
+section.car-options-aside {
+    position: sticky;
+    top: 1px;
+    padding-bottom: 25px;
+
+}
+
+h1.title-aside {
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.aside-item2 {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #cfcdcd;
+}
+
+.aside-items {
+    padding: 40px 45px !important;
+    padding-bottom: 0px;
+}
+
+article.aside-items.aside-item3 {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ticket-container {
+    min-height: 150px;
+}
+
+.facture-dt-containe > span {
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: end;
+    flex-basis: 50%;
+}
+
+.facture-dt {
+    font-weight: 100;
+}
+.facture-dt-containe > div {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    flex-basis: 50%;
+}
+
+.factura-contianer {
+    text-align: center;
+    
+}
+
+.facture-total {
+    font-weight: bold;
+    font-size: 17px;
+    color: #97929296;
+}
+
+.total-facture ~ span {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.facture-dt-containe {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+button#btn-car_buy {
+    padding: 20px 10px;
+    border-radius: 10px;
+    border: none;
+    background: #111111;
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
+.secction-ticket {
+    text-decoration: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: hsl(0deg 8.4% 83.95%);
+    cursor: pointer;
+    padding: 5px 0px;
+}
+h5.contac-person {
+    font-weight: 100;
+}
+
+.cant-ticekt-secion {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.user-direction-icon > i {
+    cursor: pointer;
+}
+
+.user-direction-icon {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+}
+
+.aabout-person {
+    font-weight: 100;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dt-personles {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.aside-item1 {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-bottom: 0px !important;
+}
+
+.aside-item2 {
+    padding-bottom: 25px !important;
+}
+
+@media only screen and (min-width: 1715px){
+    aside.contenedor-shop-car {
+     min-width: 500px !important;
+    }
+}
+
+@media only screen and (max-width: 1378px){
+    aside.contenedor-shop-car {
+      min-width: 337px !important;
+    }
+}
+
+@media only screen and (max-width: 1023px){
+    .contenedor-shop-car {
+        position: fixed;
+        right: 0px;
+        background: white;
+        height: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 700px){
+    .shop-item-car{
+        justify-content: center;
+    }
+    .view-event{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .view-container{
+        height: auto;
+    }
+}
+
+
+.slider {
+    animation: scroll 10s linear infinite;
+  }
+  
+  @keyframes scroll {
+    5%{
+        transform: translateX(0%);
+    }
+    20%{
+        transform: translateX(0%);
+        
+    }
+
+    50%{
+        transform: translateX(-100%);
+    }
+    70%{
+        transform: translateX(-100%);
+
+    }
+
+
+
+    80%{
+        transform: translateX(-200%);
+    }
+
+    100%{
+        transform: translateX(-200%);
+    }
+  }
