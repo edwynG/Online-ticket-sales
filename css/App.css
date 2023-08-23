@@ -148,10 +148,10 @@ ul{
 
 .shop-item-car {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),245px));
+    grid-template-columns: repeat(auto-fit,minmax(min(235px,100%),1fr));
     justify-content: space-between;
     grid-auto-rows: 320px;
-    gap: 25px;
+    gap: 35px;
 }
 
 .car-fuction {
@@ -174,8 +174,8 @@ ul{
     height: 120px;
     align-items: center;
     padding: 10px;
-    border-radius: 15px;
-    background: var(--color_car);
+    border-radius: 8px;
+    background: #ffdeda5c;
 }
 
 .shop-buy-icon {
@@ -231,10 +231,11 @@ ul{
     font-size: 16px;
 }
 
-.hour-event {
+.cine-event {
     font-weight: 100;
     letter-spacing: 1px;
     font-size: 14px;
+    color: #797878f0;
 }
 
 .collection-section{
@@ -361,7 +362,7 @@ h5.contac-person {
     gap: 5px;
     justify-content: center;
     align-items: center;
-    padding: 10px 0px;
+    padding: 30px 0px;
 }
 
 .user-direction-icon > i {
@@ -398,6 +399,85 @@ h5.contac-person {
 
 .aside-item2 {
     padding-bottom: 25px !important;
+    padding-top: 15px !important;
+}
+
+.ticket-img {
+    min-width: 140px;
+    height: 100%;
+}
+.ticket-shop-container {
+    display: flex;
+    gap: 10px;
+    min-height: 125px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eee;
+}
+
+.delete-ticket-c > i {
+    color: #494a4c5e;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-ticket-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 30px;
+}
+
+.ticket-observaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 9px;
+}
+
+.ticket-cant-pre {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+}
+
+.cantidad-boltetos {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border-radius: 3px;
+    outline: 1px solid;
+    padding: 4px 10px;
+}
+
+span.cant-sustracion , span.cant-adicion{
+    cursor: pointer;
+    padding: 5px;
+}
+
+h5.ticket-fecha {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.fecha-lg{
+    background: black;
+    color: #fff;
+    border-radius: 50%;
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+h4.name-obra {
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-size: 16px;
+    padding-bottom: 3px;
+}
+
+span.fecha-un {
+    font-weight: 100;
 }
 
 @media only screen and (min-width: 1715px){
@@ -408,7 +488,7 @@ h5.contac-person {
 
 @media only screen and (max-width: 1378px){
     aside.contenedor-shop-car {
-      min-width: 337px !important;
+      min-width: 410px !important;
     }
 }
 
