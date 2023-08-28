@@ -44,8 +44,20 @@ const sendNotification = () =>{
   console.log("Funciona")
 }
 
+const toggleNavCar = ()=>{
+  let btn = document.getElementById('shopCar');
+  let containerCar = document.getElementById('container-shop-car');
+
+  btn.onclick = ()=>{
+    containerCar.classList.toggle('delete-car-shop')
+  }
+
+}
+
+
 export {
     createQR,
     scannerQR,
-    sendNotification
+    sendNotification,
+    toggleNavCar
 }

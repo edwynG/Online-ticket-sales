@@ -30,16 +30,33 @@ ul{
 
 .nav-item{
     padding: 8px;
+    display: flex;
+    gap: 25px;
+    overflow: hidden;
+    padding-left: 22px;
+    align-items: center;
 }
 .navbar{
     flex-basis: 75px;
-    min-width: 75px;
+    width: 75px;
     text-align: center;
+    box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.15);
+    transition: width .3s ease;
+    position: relative;
+    z-index: 100;
+    background: #fff;
+    bottom: 0px;
+    top: 0;
+}
+
+.nav-item-text {
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .nav-item:hover {
     border-right: 2px solid #111;
-    background-color: #11111105;
+    background-color: #1111110a;
 }
 .nav-item:active {
     background-color: #1111110d;
@@ -77,7 +94,7 @@ ul{
 .search-container{
     position: relative;
     width: 100%;
-    max-width: 1160px;
+    max-width: 1250px;
 }
 
 
@@ -129,9 +146,14 @@ ul{
     width: 100%;
     flex: 1 0 100%;
     scroll-snap-align: start;
-    animation: scroll 15s infinite ease-out alternate;
-    animation-play-state: running;
+    transition: transform .5s ease;
+    animation: scroll 15s infinite ease alternate;
+    /* animation-play-state: running; */
     
+}
+
+.collection-img-container:hover > .c-img-container{
+    animation-play-state: paused;
 }
 
 
@@ -148,7 +170,7 @@ ul{
 
 .shop-item-car {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(min(235px,100%),1fr));
+    grid-template-columns: repeat(auto-fill,minmax(min(235px,100%),1fr));
     justify-content: space-between;
     grid-auto-rows: 320px;
     gap: 35px;
@@ -180,7 +202,7 @@ ul{
 
 .shop-buy-icon {
     padding: 15px;
-    background: #252121cf;
+    background: #111111;
     color: #fff;
     width: auto;
     border-radius: 50%;
@@ -256,14 +278,21 @@ ul{
 
 
 aside.contenedor-shop-car {
+    display: none;
+    box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.15);
     min-width: 420px;
+    transition: display .5s ease;
+    position: sticky;
+    right: 0px;
+    bottom: 0px;
+    background: #fff;
+    top: 0px;
 }
 
 section.car-options-aside {
-    position: sticky;
-    top: 1px;
     padding-bottom: 25px;
-
+    position: sticky;
+    top: 0px;
 }
 
 h1.title-aside {
@@ -278,7 +307,7 @@ h1.title-aside {
 }
 
 .aside-items {
-    padding: 40px 45px !important;
+    padding: 5px 45px !important;
     padding-bottom: 0px;
 }
 
@@ -289,9 +318,10 @@ article.aside-items.aside-item3 {
 }
 
 .ticket-container {
-    min-height: 150px;
+    height: 270px;
+    overflow: auto;
+    width: 100%;
 }
-
 .facture-dt-containe > span {
     font-weight: bold;
     flex-grow: 1;
@@ -350,8 +380,14 @@ button#btn-car_buy {
     height: 8px;
     border-radius: 50%;
     background-color: hsl(0deg 8.4% 83.95%);
+    transition: background-color .5s ease;
     cursor: pointer;
-    padding: 5px 0px;
+    padding: 3px 0px;
+}
+
+.secction-ticket:hover{
+    background-color: hsl(0, 1%, 56%);
+
 }
 h5.contac-person {
     font-weight: 100;
@@ -395,6 +431,7 @@ h5.contac-person {
     flex-direction: column;
     gap: 25px;
     padding-bottom: 0px !important;
+    padding-top: 40px !important;
 }
 
 .aside-item2 {
@@ -409,7 +446,7 @@ h5.contac-person {
 .ticket-shop-container {
     display: flex;
     gap: 10px;
-    min-height: 125px;
+    height: 135px;
     padding: 10px 0px;
     border-bottom: 1px solid #eee;
 }
@@ -480,6 +517,20 @@ span.fecha-un {
     font-weight: 100;
 }
 
+
+/*class animation*/
+
+.delete-car-shop{display: block !important;}
+
+.delete-slider{
+    animation: paused !important;
+}
+
+.menu-desplegable{
+    position: fixed;
+    width: 220px;
+}
+
 @media only screen and (min-width: 1715px){
     aside.contenedor-shop-car {
      min-width: 500px !important;
@@ -492,9 +543,9 @@ span.fecha-un {
     }
 }
 
-@media only screen and (max-width: 1023px){
+@media only screen and (max-width: 1050px){
     .contenedor-shop-car {
-        position: fixed;
+        position: fixed !important;
         right: 0px;
         background: white;
         height: 100%;
@@ -516,10 +567,6 @@ span.fecha-un {
 }
 
 
-.slider {
-    animation: scroll 10s linear infinite;
-  }
-  
   @keyframes scroll {
     5%{
         transform: translateX(0%);
