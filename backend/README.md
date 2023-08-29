@@ -2,7 +2,7 @@
 
 Edwyn guapo vete a ver el codigo es lo que
 
-Art by Shanaka Dias
+
           c,_.--.,y
             7 a.a(
            (   ,_Y)
