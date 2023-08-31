@@ -101,13 +101,13 @@ events_data = [
 #------------------
 connection = create_server_connection('localhost', 'theatertickets', 'root', 'diminombre')
 
-def insert_user(user_name, user_email, user_password):
-	query = "INSERT INTO user (user_name, user_email, user_password) VALUES('%s', '%s', '%s');" % (user_name, user_email, user_password)
+def insert_user(user_name, user_email, user_password, _type):
+	query = "INSERT INTO user (user_name, user_email, user_password, type) VALUES('%s', '%s', '%s', '%s');" % (user_name, user_email, user_password, _type)
 	execute_query(connection, query)
 
-def insert_production(production_name, production_description, production_duration, production_tags):
+def insert_production(production_manager, production_name, production_description, production_duration, production_tags):
 	production_duration = str(production_duration)
-	query = "INSERT INTO production (production_name, production_description, production_duration, production_tags) VALUES('%s', '%s', %s,'%s');" % (production_name, production_description, production_duration, production_tags)
+	query = "INSERT INTO production (production_manager, production_name, production_description, production_duration, production_tags) VALUES('%s', %s', '%s', %s,'%s');" % (production_manager, production_name, production_description, production_duration, production_tags)
 	execute_query(connection, query)
 
 def insert_event(production_id, event_date, event_capacity, event_tksold):
@@ -132,16 +132,6 @@ def get_property_by_id(connection, property, table, id, id_column):
         return result[0][0]
     return None
 
-#---- DB Filler
-#execute_list_query(connection, insert_many_user_query, users_data)
-#execute_list_query(connection, insert_many_production_query, productions_data)
-#for i in range(len(events_data)):
-#    insert_event(events_data[i][0],events_data[i][1],events_data[i][2],events_data[i][3])
-
-#insert_event(1,"2023-09-27 12:00:00", 80, 60)
-
-#---- DB Filler
-
 def buy_ticket(user_id, event_id, quantity = 1):
     production_id = get_property_by_id(connection, "production_id", "event_detail", event_id, "event_id")
     if production_id == None:
@@ -152,6 +142,16 @@ def buy_ticket(user_id, event_id, quantity = 1):
     if not insert_ticket(user_id, event_id, quantity): 
         return {"message": "ERROR Ticket was not added to Data Base"}
     return {"message": "OK"}
+
+#---- DB Filler PARA LLENAR LA BASE DE DATOS CON INFORMACION.
+#execute_list_query(connection, insert_many_user_query, users_data)
+#execute_list_query(connection, insert_many_production_query, productions_data)
+#for i in range(len(events_data)):
+#    insert_event(events_data[i][0],events_data[i][1],events_data[i][2],events_data[i][3])
+
+#insert_event(1,"2023-09-27 12:00:00", 80, 60)
+
+#---- DB Filler
 
 fields = ["production_id", "production_manager", "production_name", "production_description", "production_duration",
              "production_tags"]
@@ -176,15 +176,54 @@ def jsonify_query(connection, query, fields):
         else:
             json+="]}"
     return json
-print(jsonify_query(connection, select_production_query, fields))
+#print(jsonify_query(connection, select_production_query, fields))
+
+
+class Production():
+    def __init__(self):
+        self.query = "SELECT * FROM production"
+    def dict(self, tuple):
+        production = {
+            "production_id": tuple[0],
+            "production_manager": tuple[1],
+            "production_name": tuple[2],
+            "production_description":tuple[3],
+            "production_duration":tuple[4],
+            "roduction_tags":tuple[5]
+        }
+        return production
+
+def dict_event(tuple):
+    production = {
+        "production_id": tuple[0],
+        "production_manager": tuple[1],
+        "production_name": tuple[2],
+        "production_description":tuple[3],
+        "production_duration":tuple[4],
+        "roduction_tags":tuple[5]
+    }
+    return production
+
+def get_all_elements_json(Element):
+    e = Element()
+    elements = []
+    result = read_query(connection, e.query)
+    for i in result:
+        elements.append(e.dict(i))
+    return elements
+    del e
+
 
 #------------------ FLASK APP
 
+
+
+print(read_query(connection, "SELECT * FROM event"))
 app = Flask(__name__)
 
-@app.route('/get', methods=['GET'])
+@app.route('/', methods=['GET'])
 def getProducts():
-    return jsonify_query(connection, select_production_query, fields)
+    return jsonify(get_all_elements_json(Production))
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
