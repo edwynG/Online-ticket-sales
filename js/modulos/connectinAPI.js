@@ -40,7 +40,29 @@ const scannerQR = () =>{
 
 }
 
+const sendNotification = () =>{
+  console.log("Funciona")
+}
+
+ async function GetInformationApi(url='https://rickandmortyapi.com/api'){
+  // para desemcapsular la promesa retronada solo tiene que usar un await cada que llames a la funcion, y almacenar en alguna variable el valor
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+           
+
+}
+
+
+
 export {
     createQR,
-    scannerQR
+    scannerQR,
+    sendNotification,
+    GetInformationApi
+    
 }
