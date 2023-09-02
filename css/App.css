@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -18,7 +18,6 @@ ul{
 
 .container{
     display: flex;
-    height: 100%;
     width: 100%;
 }
 
@@ -41,12 +40,11 @@ ul{
     width: 75px;
     text-align: center;
     box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.15);
-    transition: width .3s ease;
+    transition: flex-basis .3s ease;
     position: relative;
     z-index: 100;
     background: #fff;
-    bottom: 0px;
-    top: 0;
+  
 }
 
 .nav-item-text {
@@ -86,6 +84,16 @@ ul{
     background-size: 100% 45%;
 }
 
+
+.section_main-shop {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1300px;
+    margin: auto;
+    flex: 1 0 100%;
+}
+
 .shop-section {
     display: flex;
     width: 100%;
@@ -94,7 +102,6 @@ ul{
 .search-container{
     position: relative;
     width: 100%;
-    max-width: 1250px;
 }
 
 
@@ -277,22 +284,19 @@ ul{
 }
 
 
-aside.contenedor-shop-car {
+.contenedor-shop-car {
     display: none;
     box-shadow: 0px 0px 50px -16px rgba(0,0,0,0.15);
-    min-width: 420px;
-    transition: display .5s ease;
-    position: sticky;
-    right: 0px;
-    bottom: 0px;
+    min-width: 440px;
+    position: relative;
     background: #fff;
-    top: 0px;
 }
 
-section.car-options-aside {
+.car-options-aside {
     padding-bottom: 25px;
     position: sticky;
-    top: 0px;
+    top: 1px;
+    width: 100%;
 }
 
 h1.title-aside {
@@ -307,7 +311,7 @@ h1.title-aside {
 }
 
 .aside-items {
-    padding: 5px 45px !important;
+    padding: 5px 25px !important;
     padding-bottom: 0px;
 }
 
@@ -447,8 +451,9 @@ h5.contac-person {
     display: flex;
     gap: 10px;
     height: 135px;
-    padding: 10px 0px;
+    padding: 10px;
     border-bottom: 1px solid #eee;
+    justify-content: space-around;
 }
 
 .delete-ticket-c > i {
@@ -483,6 +488,7 @@ h5.contac-person {
     gap: 12px;
     align-items: center;
     border-radius: 3px;
+    width: max-content;
     outline: 1px solid;
     padding: 4px 10px;
 }
@@ -518,6 +524,17 @@ span.fecha-un {
 }
 
 
+.resposive_header-icon{
+    display: none;
+}
+
+
+.close_aside-resposive-icon {
+    display: none;
+    position: absolute;
+    right: 6%;
+}
+
 /*class animation*/
 
 .delete-car-shop{display: block !important;}
@@ -526,20 +543,21 @@ span.fecha-un {
     animation: paused !important;
 }
 
-.menu-desplegable{
-    position: fixed;
-    width: 220px;
+.menu-desplegable {
+    flex-basis: 210px;
+
 }
 
+
 @media only screen and (min-width: 1715px){
-    aside.contenedor-shop-car {
+    .contenedor-shop-car {
      min-width: 500px !important;
     }
 }
 
 @media only screen and (max-width: 1378px){
-    aside.contenedor-shop-car {
-      min-width: 410px !important;
+    .contenedor-shop-car {
+      min-width: 425px !important;
     }
 }
 
@@ -553,7 +571,7 @@ span.fecha-un {
 }
 
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 750px){
     .shop-item-car{
         justify-content: center;
     }
@@ -564,7 +582,210 @@ span.fecha-un {
     .view-container{
         height: auto;
     }
+
+    .collaection-section {
+        height: 330px;
+    }
 }
+
+@media only screen and (max-width: 620px){
+    .close_aside-resposive-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    .collection-img-container{
+        height: 260px;
+    }
+
+    .navbar{
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 80px;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .nav_items {
+        flex-direction: row;
+        padding: 0px;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+        background-color: inherit;
+    }
+    
+    .nav-item:hover {
+        border: none;
+        background-color: #eee;
+    }
+
+    .nav-item {
+        padding: 18px;
+        margin: 1px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    .nav-item h3{
+        display: none;
+    }
+
+    #menu-deplegable{
+        display: none;
+    }
+    
+    .shop-main{
+        padding: 20px;
+        padding-bottom: 90px;
+    }
+
+    .aside-items {
+        padding: 5px 20px !important;
+        padding-bottom: 0px;
+    }
+
+    .aside-item1 {
+    padding-top: 16px !important;
+    }
+
+    .contenedor-shop-car{
+        z-index: 200;
+    }
+}
+
+@media only screen and (max-width: 620px){
+    .shop-main {
+        padding: 15px;
+        padding-bottom: 90px;
+    }
+}
+
+
+@media only screen and (max-width: 505px){
+
+    aside#container-shop-car {
+        inset: 0;
+    }
+
+    .car-options-aside {
+        display: flex;
+        flex-direction: column;
+        inset: 0;
+        height: 100%;
+        gap: 10px;
+    }
+
+    article.aside-items.aside-item2 {
+        min-height: 270px;
+    }
+
+    article.aside-items.aside-item1 {
+        height: 30%;
+        min-height: 130px;
+        position: relative;
+    }
+
+    .ticket-img {
+        min-width: 90px;
+      
+    }
+
+    article.aside-items.aside-item3 {
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .factura-contianer {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
+        gap: 5px;
+        height: 200px;
+    }
+}
+
+@media only screen and (max-height: 720px){
+    .car-options-aside {
+        overflow: auto;
+    }
+}
+
+@media only screen and (max-width: 385px){
+    .car-options-aside {
+        width: 85%;
+    }
+}
+
+
+@media only screen and (max-width: 340px){
+    .car-options-aside {
+        width: 80%;
+    }
+}
+
+    /* .contenedor-shop-car{
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+    }
+    
+    .ticket-img {
+        min-width: 90px;
+    }
+    article.aside-items.aside-item3 {
+        width: 90%;
+        /* margin: auto; */
+    /* } */
+    
+    /* article.aside-items.aside-item1 {
+        width: 88%; */
+        /* margin: auto; */
+    /* }
+
+    .aside-items {
+        padding: 5px !important;
+  
+    }
+
+    .factura-contianer {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .facture-dt-containe {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        width: 90%;
+    }
+
+    .dt-personles {
+        justify-content: space-around;
+    }
+
+
+    
+    button#btn-car_buy {
+        width: 90%;
+        margin: auto;
+    }
+
+    .contenedor-shop-car {
+    overflow: auto;
+
+    /* } */ 
+
+
+
+
+
+
 
 
   @keyframes scroll {
@@ -592,5 +813,5 @@ span.fecha-un {
 
     100%{
         transform: translateX(-200%);
-    }
+    } 
   }

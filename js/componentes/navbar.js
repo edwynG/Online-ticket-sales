@@ -6,6 +6,7 @@ class navbar extends HTMLElement {
         super();
         //this.name=null;
        
+       
     }
 
     // static get observedAttributes(){
@@ -24,59 +25,106 @@ class navbar extends HTMLElement {
   
     
     createNavBar(){
-        let nav = document.createElement("nav");
-        nav.setAttribute("class", "navbar navbar-light bg-transparent");
+       // Create the header element
+      const header = document.createElement("header");
+      this.classList.add("navbar");
+      this.id = "navbar-menu";
 
-        let div = document.createElement("div");
-        div.setAttribute("class", "container-fluid");
+      // Create the ul element
+      const ul = document.createElement("ul");
+      ul.classList.add("nav_items");
+      ul.id = "nav_items";
 
-        let a = document.createElement("a");
-        a.setAttribute("class", "navbar-brand");
-        a.setAttribute("href", "#");
+      // Create the li elements
+      const li1 = document.createElement("li");
+      li1.classList.add("nav-item");
+      li1.id = "menu-deplegable";
 
-        let img = document.createElement("img");
-        img.setAttribute("src", "./src/icono_teatro.png");
-        img.setAttribute("title", "Teatro");
-        img.setAttribute("width", "30");
-        img.setAttribute("height", "24");
-        img.setAttribute("class", "d-inline-block align-text-top");
-        a.appendChild(img);
+      const li2 = document.createElement("li");
+      li2.classList.add("nav-item");
 
-        let texto = document.createTextNode("Teatro");
-        a.appendChild(texto);
+      const li3 = document.createElement("li");
+      li3.classList.add("nav-item");
 
-        div.appendChild(a);
-        div.innerHTML+=`
-        
-  <div class=" navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-    </div>
-      `
-      
+      const li4 = document.createElement("li");
+      li4.classList.add("nav-item");
+      li4.id = "shopCar";
 
-        nav.appendChild(div);
+      const li5 = document.createElement("li");
+      li5.classList.add("nav-item");
+     
 
-        
-        return nav;
+      // Create the img elements
+      const img1 = document.createElement("img");
+      img1.src = "/src/icons/menu-removebg.png";
+      img1.alt = "Menu";
+
+      const img2 = document.createElement("img");
+      img2.src = "/src/icons/heart-removebg.png";
+      img2.alt = "Favorite";
+
+      const img3 = document.createElement("img");
+      img3.src = "/src/icons/bell-removebg.png";
+      img3.alt = "Notification";
+
+      const img4 = document.createElement("img");
+      img4.src = "/src/icons/shop-removebg.png";
+      img4.alt = "Car";
+
+      const img5 = document.createElement("img");
+      img5.src = "/src/icons/user-removebg.png";
+      img5.alt = "User";
+
+      // Create the h3 elements
+      const h3_1 = document.createElement("h3");
+      h3_1.classList.add("nav-item-text");
+      h3_1.innerText = "Menu";
+
+      const h3_2 = document.createElement("h3");
+      h3_2.classList.add("nav-item-text");
+      h3_2.innerText = "Principal";
+
+      const h3_3 = document.createElement("h3");
+      h3_3.classList.add("nav-item-text");
+      h3_3.innerText = "Notificaciones";
+
+      const h3_4 = document.createElement("h3");
+      h3_4.classList.add("nav-item-text");
+      h3_4.innerText = "Carrito";
+
+      const h3_5 = document.createElement("h3");
+      h3_5.classList.add("nav-item-text");
+      h3_5.innerText = "Usuario";
+
+      // Append the elements together
+      li1.appendChild(img1);
+      li1.appendChild(h3_1);
+
+      li2.appendChild(img2);
+      li2.appendChild(h3_2);
+
+      li2.onclick = ()=> window.open('/index.html','_self')
+
+      li3.appendChild(img3);
+      li3.appendChild(h3_3);
+
+      li4.appendChild(img4);
+      li4.appendChild(h3_4);
+
+      li5.appendChild(img5);
+      li5.appendChild(h3_5);
+
+      ul.appendChild(li1);
+      ul.appendChild(li2);
+      ul.appendChild(li3);
+      ul.appendChild(li4);
+      ul.appendChild(li5);
+
+      this.appendChild(ul);
+     
     }
     connectedCallback(){
-       // this.appendChild(this.createNavBar());
+      this.createNavBar()
     }
   }
 

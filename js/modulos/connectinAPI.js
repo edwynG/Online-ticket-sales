@@ -44,20 +44,25 @@ const sendNotification = () =>{
   console.log("Funciona")
 }
 
-const toggleNavCar = ()=>{
-  let btn = document.getElementById('shopCar');
-  let containerCar = document.getElementById('container-shop-car');
-
-  btn.onclick = ()=>{
-    containerCar.classList.toggle('delete-car-shop')
+ async function GetInformationApi(url='https://rickandmortyapi.com/api'){
+  // para desemcapsular la promesa retronada solo tiene que usar un await cada que llames a la funcion, y almacenar en alguna variable el valor
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
+           
 
 }
+
 
 
 export {
     createQR,
     scannerQR,
     sendNotification,
-    toggleNavCar
+    GetInformationApi
+    
 }
