@@ -153,31 +153,6 @@ def buy_ticket(user_id, event_id, quantity = 1):
 
 #---- DB Filler
 
-fields = ["production_id", "production_manager", "production_name", "production_description", "production_duration",
-             "production_tags"]
-select_production_query = "SELECT * FROM production"
-
-def jsonify_query(connection, query, fields):
-    result = read_query(connection, query)
-    json = "{productions: ["
-    for i in range(len(result)):
-        for j in range(len(fields)):
-            json+=fields[j]+": "
-            if str(result[i][j]).isnumeric():
-                json+=str(result[i][j])
-            else:
-                json+=result[i][j]
-            if j != len(fields)-1:
-                json+=", "
-            else:
-                json+="}"
-        if i != len(result)-1:
-            json+=",{" 
-        else:
-            json+="]}"
-    return json
-#print(jsonify_query(connection, select_production_query, fields))
-
 
 class Production():
     def __init__(self):
@@ -193,16 +168,35 @@ class Production():
         }
         return production
 
-def dict_event(tuple):
-    production = {
-        "production_id": tuple[0],
-        "production_manager": tuple[1],
-        "production_name": tuple[2],
-        "production_description":tuple[3],
-        "production_duration":tuple[4],
-        "roduction_tags":tuple[5]
-    }
-    return production
+class Event():
+    def __init__(self):
+        self.query = "SELECT * FROM production"
+    def dict(self, tuple):
+        production = {
+            "production_id": tuple[0],
+            "production_manager": tuple[1],
+            "production_name": tuple[2],
+            "production_description":tuple[3],
+            "production_duration":tuple[4],
+            "roduction_tags":tuple[5]
+        }
+        return production
+
+class User():
+    def __init__(self):
+        self.query = "SELECT * FROM production"
+    def dict(self, tuple):
+        production = {
+            "production_id": tuple[0],
+            "production_manager": tuple[1],
+            "production_name": tuple[2],
+            "production_description":tuple[3],
+            "production_duration":tuple[4],
+            "roduction_tags":tuple[5]
+        }
+        return production
+
+
 
 def get_all_elements_json(Element):
     e = Element()
@@ -217,13 +211,20 @@ def get_all_elements_json(Element):
 #------------------ FLASK APP
 
 
-
 print(read_query(connection, "SELECT * FROM event"))
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/production', methods=['GET'])
 def getProducts():
     return jsonify(get_all_elements_json(Production))
+
+@app.route('/event', methods=['GET'])
+def getEvent():
+    return jsonify(get_all_elements_json(Event))
+
+@app.route('/user', methods=['GET'])
+def getUser():
+    return jsonify(get_all_elements_json(User))
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
