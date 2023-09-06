@@ -153,10 +153,14 @@ def buy_ticket(user_id, event_id, quantity = 1):
 
 #---- DB Filler
 
+class DbElement():
+    def __init__(self):
+        self.query_getall = "SELECT * FROM element"
 
 class Production():
     def __init__(self):
-        self.query = "SELECT * FROM production"
+        self.query_getall = "SELECT * FROM production"
+        self.query_getbyid = "SELECT * FROM production WHERE production_id = %s"        
     def dict(self, tuple):
         production = {
             "production_id": tuple[0],
@@ -170,7 +174,7 @@ class Production():
 
 class Event():
     def __init__(self):
-        self.query = "SELECT * FROM production"
+        self.query_getall = "SELECT * FROM event"
     def dict(self, tuple):
         production = {
             "production_id": tuple[0],
@@ -184,7 +188,7 @@ class Event():
 
 class User():
     def __init__(self):
-        self.query = "SELECT * FROM production"
+        self.query_getall = "SELECT * FROM user"
     def dict(self, tuple):
         production = {
             "production_id": tuple[0],
@@ -201,30 +205,49 @@ class User():
 def get_all_elements_json(Element):
     e = Element()
     elements = []
-    result = read_query(connection, e.query)
+    result = read_query(connection, e.query_getall)
     for i in result:
         elements.append(e.dict(i))
     return elements
     del e
 
+def get_element_by_id_json(Element, id):
+    e = Element()
+    result = read_query(connection, e.query_getbyid%(str(id)))
+    elements = e.dict(result[0])
+    return elements
+    del e
 
 #------------------ FLASK APP
 
+elementsTypes = {"production": Production, "user": User, "event": Event}
 
-print(read_query(connection, "SELECT * FROM event"))
 app = Flask(__name__)
 
 @app.route('/production', methods=['GET'])
-def getProducts():
+def getAllProduct():
     return jsonify(get_all_elements_json(Production))
 
-@app.route('/event', methods=['GET'])
-def getEvent():
-    return jsonify(get_all_elements_json(Event))
 
-@app.route('/user', methods=['GET'])
-def getUser():
-    return jsonify(get_all_elements_json(User))
+@app.route('/production/1', methods=['GET'])
+def getProductById():
+    id = request.args.get('id')
+    return jsonify(get_element_by_id_json(Production,id))
+
+
+@app.route('/getall', methods=['GET'])
+def getAll():
+    Element = request.args.get('element')
+    Element = elementsTypes[Element]
+    print(Element)
+    e = Element()
+    elements = []
+    result = read_query(connection, e.query_getall)
+    for i in result:
+        elements.append(e.dict(i))
+    return elements
+    del e    
+    return jsonify(get_all_elements_json(Event))
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
